@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function addButton() {
+        // Create a new button element
+        var btn = document.createElement("button");
+        btn.innerHTML = "click me for info about page";
+        btn.onclick = function() {
+          alert('This website is used to get coding question links. search the words in the questions you want using the given search bar');
+        };
+        // Append the button to the form
+        var formDiv = document.querySelector(".form");
+        formDiv.appendChild(btn);
+      }
+
+      // Call the function once the document is fully loaded
+      window.onload = addButton;
+    </script>
+  </head>
+  <body>
+    <div class="form">
+      <form method="POST">
+        {{ form.hidden_tag() }} {{ form.search.label }} {{ form.search() }} {{
+        form.submit() }}
+      </form>
+    </div>
+    <div>
+      {% for result in results %}
+      <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
+      <p>Score: {{ result['Score'] }}</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>
+
